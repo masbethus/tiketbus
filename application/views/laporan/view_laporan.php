@@ -90,7 +90,7 @@
                     }
             }
             ?>
-            <tr><td colspan="5"><b>Total</b></td><td><?php if(empty($total))
+            <tr><td colspan="6"><b>Total</b></td><td><?php if(empty($total))
                 echo $total ='0';
             else {
                 
@@ -150,7 +150,7 @@
                     }
             }
             ?>
-            <tr><td colspan="5"><b>Total</b></td><td><?php if(empty($totalb))
+            <tr><td colspan="6"><b>Total</b></td><td><?php if(empty($totalb))
                 echo $totalb ='0';
             else {
                 
