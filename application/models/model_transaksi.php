@@ -22,7 +22,7 @@ class Model_transaksi extends CI_Controller{
         $this->db->join('kelas', 'kelas.id_kelas = transaksi.id_kelas');
         $this->db->join('agen', 'agen.agen_id = transaksi.id_agen');
         $this->db->order_by('transaksi_id', 'ASC');
-        $data = $this->db->get('transaksi',$num, $offset);
+        $data = $this->db->get('transaksi',array('tgl_transaksi'=>'DATE(NOW())'),$num, $offset);
         return $data->result();
     }
     function insert_outbox($data){

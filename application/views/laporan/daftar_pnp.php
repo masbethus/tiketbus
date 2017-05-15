@@ -1,5 +1,15 @@
+<div class="row">
+<ol class="breadcrumb">
+        <li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+        <li class="active">Icons</li>
+</ol>
+</div><!--/.row-->
+
+<div class="row">
+<div class="col-lg-6">
+        <h1 class="page-header">Laporan Transaksi</h1>
 <?php echo form_open('laporan/dpp');?>
-<table>
+<table style="width: 100%" class="table table-bordered">
     <tr>
         <td><select name="kelas">
                 <?php
@@ -27,3 +37,5 @@
     
 </table>
 <?php echo form_close();?>
+</div>
+</div><!--/.row-->

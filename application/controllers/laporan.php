@@ -28,7 +28,8 @@ class Laporan extends CI_Controller{
         }else{
             $data['kelas']      = $this->model_kelas->tampilkan_data()->result();
             $data['jurusan']    = $this->model_jadwal->tampilkan_data()->result();
-            $this->load->view('laporan/daftar_pnp', $data);
+            //$this->load->view('laporan/daftar_pnp', $data);
+            $this->template->load('template', 'laporan/daftar_pnp', $data);
         }
     }
     function chart(){
@@ -81,7 +82,7 @@ class Laporan extends CI_Controller{
             $total = $total+$v->harga;
         }
             $pdf->Cell(153, 7, 'Total', 1,0, 'R');
-            $pdf->Cell(25, 7, $total, 1,0);
+            $pdf->Cell(25, 7, format_rupiah($total), 1,0);
             $pdf->Line(10, 280, 188, 280);
             $pdf->Text(20, 285, 'Dicetak Tanggal: '.date( 'd-m-Y, H:i:s'));
                     
