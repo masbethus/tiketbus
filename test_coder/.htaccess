@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+
+RewriteBase /
+# Do not remove this line, otherwise mod_rewrite rules will stop workingRewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?/$1 [L]
+
+
+#Anti listing Directory
+#IndexIgnore *
+Options All -Indexes
+
+</IfModule>

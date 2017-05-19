@@ -18,7 +18,7 @@
                     <div class="th-inner ">NO</div>
                     <div class="fht-cell"></div></th>
                 <th style="">
-                    <div class="th-inner ">Kode Kelas</div>
+                    <div class="th-inner ">Kode Tiket</div>
                     <div class="fht-cell"></div>
                     </th>
                     <th style="">

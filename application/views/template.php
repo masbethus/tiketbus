@@ -127,7 +127,7 @@ xmlhttp.open("GET","<?php echo base_url('tiket_engine/sms');?>");
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
                <?php echo $contents;?>
 
-	</div><!--/End of Kontlo .main-->
+	</div><!--/End of .main-->
         
         <script src="<?php echo base_url();?>assets/js/jquery.js"></script>
 	<script src="<?php echo base_url();?>assets/js/jquery-1.11.1.min.js"></script>

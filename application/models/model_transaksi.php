@@ -19,10 +19,11 @@ class Model_transaksi extends CI_Controller{
         $this->db->update('transaksi',$data);
     }
     function tampil_paging($num, $offset){
+        $hariini = date("Y-m-d");
         $this->db->join('kelas', 'kelas.id_kelas = transaksi.id_kelas');
         $this->db->join('agen', 'agen.agen_id = transaksi.id_agen');
         $this->db->order_by('transaksi_id', 'ASC');
-        $data = $this->db->get('transaksi',array('tgl_transaksi'=>'DATE(NOW())'),$num, $offset);
+        $data = $this->db->get_where('transaksi',array('tgl_transaksi'=>DATE($hariini)),$num, $offset);
         return $data->result();
     }
     function insert_outbox($data){

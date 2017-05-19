@@ -1,11 +1,12 @@
+<!--template form_login.php-->
 <div class="panel-body">
     <?php echo form_open('auth/login', array('role'=>'form'));?>
                 <fieldset>
                         <div class="form-group">
-                                <input class="form-control" placeholder="User Name" name="username" type="text" autofocus="">
+                                <input class="form-control" placeholder="User Name" name="username" type="text" required="" autofocus="">
                         </div>
                         <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                <input class="form-control" placeholder="Password" name="password" type="password" required="" value="">
                         </div>
                         <div class="checkbox">
                                 <label>
