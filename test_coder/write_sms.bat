@@ -1,0 +1,1 @@
+start "write sms" "C:\xampp\php\php.exe" -f E:\Produktif\PHP\htdocs\tiketbus\test_coder\lokal_sja\tulissms.php

@@ -1,20 +1,20 @@
-    <?php
-    // koneksi ke mysql di server localhost
-    mysql_connect('localhost', 'root', '');
-    // nama database Gammu yang ada di localhost
-    mysql_select_db('tiket');
+<?php
+// koneksi ke mysql di server localhost
+mysql_connect('localhost', 'root', '');
+// nama database Gammu yang ada di localhost
+mysql_select_db('tiket');
 
-    // baca data XML dari server hosting yang digenerate oleh data.php
-    $dataxml = simplexml_load_file('http://rosaliaindah.cf/grabing/outbox');
-    foreach($dataxml->data as $data){
+// baca data XML dari server hosting yang digenerate oleh data.php
+$dataxml = simplexml_load_file('http://rosaliaindah.cf/grabing/outbox');
+foreach($dataxml->data as $data){
     // baca field ID
     $id = $data->ID;
     // baca nomor tujuan
     $destination = $data->DestionationNumber;
     // baca isi sms
     $sms = $data->TextDecoded;
-	//baca waktu kirim
-	$time = $data->SendingDateTime;
+    //baca waktu kirim
+    $time = $data->SendingDateTime;
 
     // mengirim SMS via Gammu dengan insert data ke tabel outbox Gammu
     $query = "INSERT INTO outbox (DestinationNumber, TextDecoded, InsertIntoDB) VALUES ('$destination', '$sms', '$time')";
@@ -30,5 +30,5 @@
     curl_setopt($curlHandle, CURLOPT_POST, 1);
     curl_exec($curlHandle);
     curl_close($curlHandle);
-    }
-    ?>
+}
+?>

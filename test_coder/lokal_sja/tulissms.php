@@ -1,34 +1,34 @@
-    <?php
+<?php
 
-    //skrip untuk menghubungkan SMS Gateway lokal dengan hosting.. skrip ini dipasang untuk berhadapan dengan gammu.. Penggunaannya adalah:
-    //1. harus ada koneksi internet,
-    //2. database gammu
+//skrip untuk menghubungkan SMS Gateway lokal dengan hosting.. skrip ini dipasang untuk berhadapan dengan gammu.. Penggunaannya adalah:
+//1. harus ada koneksi internet,
+//2. database gammu
 
-    $url               =    "http://rosaliaindah.cf/grabing/insert";
-	$dbname            =    'tiket';
-    $dbuser            =    'root';
-    $dbpass            =    '';
-    $dbhost            =    'localhost';
+$url    =    "http://rosaliaindah.cf/grabing/insert";
+$dbname =    'tiket';
+$dbuser =    'root';
+$dbpass =    '';
+$dbhost =    'localhost';
 
-    if(mysql_connect($dbhost,$dbuser,$dbpass)){
+if(mysql_connect($dbhost,$dbuser,$dbpass)){
     mysql_select_db($dbname);
-    }else{
+}else{
     echo 'DB ne ra konek!!';
-    }
+}
 
-    //bukak sms satu persatu
+//bukak sms satu persatu
 
-    $q        = "SELECT `SenderNumber`,`Text`,`RecipientID`,`SMSCNumber`,`TextDecoded`,`UpdatedInDB`,`ID` FROM `inbox` WHERE `Processed`='false'";
-    $mq       = mysql_query($q);
-    $n        = mysql_query($q);
+$q        = "SELECT `SenderNumber`,`Text`,`RecipientID`,`SMSCNumber`,`TextDecoded`,`UpdatedInDB`,`ID` FROM `inbox` WHERE `Processed`='false'";
+$mq       = mysql_query($q);
+$n        = mysql_query($q);
 
-    while($r=mysql_fetch_array($mq)){
-	echo $text			= $r['Text'];
+while($r=mysql_fetch_array($mq)){
+    echo $text          = $r['Text'];
     echo $sms           = $r['TextDecoded'];
     echo $nohp          = $r['SenderNumber'];
     echo $time          = $r['UpdatedInDB'];
-	echo $recipen		= $r['RecipientID'];
-	echo $smsc			= $r['SMSCNumber'];
+    echo $recipen       = $r['RecipientID'];
+    echo $smsc          = $r['SMSCNumber'];
     echo $id            = $r['ID'];
 
     $curlHandle = curl_init();
@@ -44,6 +44,6 @@
     $q2="UPDATE `inbox` SET `Processed`='true' WHERE `ID`='$id'";
     mysql_query($q2);
 
-    }
+}
 
-    ?>
+?>

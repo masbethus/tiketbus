@@ -1,4 +1,4 @@
-<table with="160" border="1">
+<table width="200" border="1">
 <tr>
 <?php
 $kolom = 4;
@@ -8,6 +8,7 @@ $k =32;
     foreach ($record->result() as $p){
         $pnp = $p->nama_pelanggan;
         $agen = $p->nama;
+        $notiket = $p->no_tiket;
         
         if ($i >= $kolom) {
         echo "<tr></tr>";
@@ -16,7 +17,7 @@ $k =32;
     $i++;
  $w++;
 ?>
- <td width="90"><?php echo $pnp; ?><br><?php echo $w; ?></td>
+ <td width="90"><?php echo $pnp; ?><br><?php echo "No Tiket : " .$notiket;?><br><?php echo $w; ?></td>
 <?php
 }
 ?>

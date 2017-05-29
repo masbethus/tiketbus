@@ -1,122 +1,141 @@
-/*
-Navicat MySQL Data Transfer
+-- phpMyAdmin SQL Dump
+-- version 3.4.5
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Waktu pembuatan: 23. Mei 2017 jam 03:59
+-- Versi Server: 5.5.16
+-- Versi PHP: 5.3.8
 
-Source Server         : localhost
-Source Server Version : 50516
-Source Host           : 127.0.0.1:3306
-Source Database       : tiket
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
-Target Server Type    : MYSQL
-Target Server Version : 50516
-File Encoding         : 65001
 
-Date: 2017-05-17 02:10:29
-*/
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
-SET FOREIGN_KEY_CHECKS=0;
+--
+-- Database: `tiket`
+--
 
--- ----------------------------
--- Table structure for agen
--- ----------------------------
-DROP TABLE IF EXISTS `agen`;
-CREATE TABLE `agen` (
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `agen`
+--
+
+CREATE TABLE IF NOT EXISTS `agen` (
   `agen_id` int(11) NOT NULL AUTO_INCREMENT,
   `nama` varchar(30) NOT NULL,
   `kota` varchar(70) NOT NULL,
   `no_hp` varchar(20) NOT NULL,
   `PIN` int(4) NOT NULL,
   PRIMARY KEY (`agen_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
--- ----------------------------
--- Records of agen
--- ----------------------------
-INSERT INTO `agen` VALUES ('14', 'Sambi Pitu', 'Jogjakarta', '+6285702413985', '1234');
-INSERT INTO `agen` VALUES ('12', 'Gilingan', 'Surakarta', '+6285866402974', '1234');
-INSERT INTO `agen` VALUES ('10', 'Sragen Baru', 'Sragen', '+6285715053497', '1234');
-INSERT INTO `agen` VALUES ('11', 'Giwangan', 'Jogjakarta', '+6285329755578', '1234');
-INSERT INTO `agen` VALUES ('13', 'Kantor Pusat', 'KarangAnyar', '+6285866402963', '1234');
+--
+-- Dumping data untuk tabel `agen`
+--
 
--- ----------------------------
--- Table structure for balance
--- ----------------------------
-DROP TABLE IF EXISTS `balance`;
-CREATE TABLE `balance` (
+INSERT INTO `agen` (`agen_id`, `nama`, `kota`, `no_hp`, `PIN`) VALUES
+(12, 'Gilingan', 'Surakarta', '+6285866402974', 1234),
+(10, 'Sragen Baru', 'Sragen', '+6285715053497', 1234),
+(11, 'Giwangan', 'Jogjakarta', '+6285329755578', 1234),
+(13, 'Kantor Pusat', 'KarangAnyar', '+6285866402963', 1234);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `balance`
+--
+
+CREATE TABLE IF NOT EXISTS `balance` (
   `id_stock` int(11) NOT NULL AUTO_INCREMENT,
   `agen_id` int(11) DEFAULT NULL,
   `kode_awal` varchar(10) DEFAULT NULL,
   `kode_akhir` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id_stock`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
--- ----------------------------
--- Records of balance
--- ----------------------------
-INSERT INTO `balance` VALUES ('8', '13', '001', '030');
-INSERT INTO `balance` VALUES ('9', '10', '031', '060');
-INSERT INTO `balance` VALUES ('10', '11', '061', '090');
-INSERT INTO `balance` VALUES ('13', '14', '131', '150');
-INSERT INTO `balance` VALUES ('12', '12', '091', '130');
+--
+-- Dumping data untuk tabel `balance`
+--
 
--- ----------------------------
--- Table structure for daemons
--- ----------------------------
-DROP TABLE IF EXISTS `daemons`;
-CREATE TABLE `daemons` (
+INSERT INTO `balance` (`id_stock`, `agen_id`, `kode_awal`, `kode_akhir`) VALUES
+(8, 13, '001', '030'),
+(9, 10, '031', '060'),
+(10, 11, '061', '090'),
+(12, 12, '091', '130');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `daemons`
+--
+
+CREATE TABLE IF NOT EXISTS `daemons` (
   `Start` text NOT NULL,
   `Info` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of daemons
--- ----------------------------
+-- --------------------------------------------------------
 
--- ----------------------------
--- Table structure for detail_kursi
--- ----------------------------
-DROP TABLE IF EXISTS `detail_kursi`;
-CREATE TABLE `detail_kursi` (
+--
+-- Struktur dari tabel `detail_kursi`
+--
+
+CREATE TABLE IF NOT EXISTS `detail_kursi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelas` int(11) DEFAULT NULL,
   `transaksi_id` int(11) DEFAULT NULL,
   `kode_tiket` varchar(30) DEFAULT NULL,
   `no_kursi` varchar(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=979 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=979 ;
 
--- ----------------------------
--- Records of detail_kursi
--- ----------------------------
-INSERT INTO `detail_kursi` VALUES ('969', '6', '1322', 'JKT-SUP', '1');
-INSERT INTO `detail_kursi` VALUES ('970', '7', '1323', 'JKT-EXE', '1');
-INSERT INTO `detail_kursi` VALUES ('971', '7', '1324', 'BTN-EXE', '2');
-INSERT INTO `detail_kursi` VALUES ('972', '7', '1325', 'PLB-EXE', '3');
-INSERT INTO `detail_kursi` VALUES ('973', '8', '1326', 'LAM-VIP', '1');
-INSERT INTO `detail_kursi` VALUES ('974', '6', '1327', 'JKT-SUP', '2');
-INSERT INTO `detail_kursi` VALUES ('975', '8', '1328', 'BTN-VIP', '2');
-INSERT INTO `detail_kursi` VALUES ('976', '7', '1329', 'JKT-EXE', '4');
-INSERT INTO `detail_kursi` VALUES ('977', '9', '1330', 'JKT-BIS', '1');
-INSERT INTO `detail_kursi` VALUES ('978', '7', '1331', 'JKT-EXE', '5');
+--
+-- Dumping data untuk tabel `detail_kursi`
+--
 
--- ----------------------------
--- Table structure for gammu
--- ----------------------------
-DROP TABLE IF EXISTS `gammu`;
-CREATE TABLE `gammu` (
+INSERT INTO `detail_kursi` (`id`, `id_kelas`, `transaksi_id`, `kode_tiket`, `no_kursi`) VALUES
+(969, 6, 1322, 'JKT-SUP', '1'),
+(970, 7, 1323, 'JKT-EXE', '1'),
+(971, 7, 1324, 'BTN-EXE', '2'),
+(972, 7, 1325, 'PLB-EXE', '3'),
+(973, 8, 1326, 'LAM-VIP', '1'),
+(974, 6, 1327, 'JKT-SUP', '2'),
+(975, 8, 1328, 'BTN-VIP', '2'),
+(976, 7, 1329, 'JKT-EXE', '4'),
+(977, 9, 1330, 'JKT-BIS', '1'),
+(978, 7, 1331, 'JKT-EXE', '5');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `gammu`
+--
+
+CREATE TABLE IF NOT EXISTS `gammu` (
   `Version` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of gammu
--- ----------------------------
-INSERT INTO `gammu` VALUES ('10');
-INSERT INTO `gammu` VALUES ('10');
+--
+-- Dumping data untuk tabel `gammu`
+--
 
--- ----------------------------
--- Table structure for inbox
--- ----------------------------
-DROP TABLE IF EXISTS `inbox`;
-CREATE TABLE `inbox` (
+INSERT INTO `gammu` (`Version`) VALUES
+(10),
+(10);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `inbox`
+--
+
+CREATE TABLE IF NOT EXISTS `inbox` (
   `UpdatedInDB` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ReceivingDateTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `Text` text NOT NULL,
@@ -130,89 +149,119 @@ CREATE TABLE `inbox` (
   `RecipientID` text NOT NULL,
   `Processed` enum('false','true') NOT NULL DEFAULT 'false',
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=353 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=353 ;
 
--- ----------------------------
--- Records of inbox
--- ----------------------------
-INSERT INTO `inbox` VALUES ('2017-05-08 17:43:04', '2017-05-07 11:35:43', '004A006B0074002D007300750070002300610062006500740023003000380035003300320039003700350035003500370038', '+6285866402974', 'Default_No_Compression', '', '+62816124', '-1', 'Jkt-sup#abet#085329755578', '319', 'modem1', 'true');
-INSERT INTO `inbox` VALUES ('2017-05-08 17:43:04', '2017-05-07 11:39:19', '004A006B0074002D00650078006500230061006C00760069006E0023003000380032003300310034003800350033003400390039', '+6285866402974', 'Default_No_Compression', '', '+62816124', '-1', 'Jkt-exe#alvin#082314853499', '320', 'modem1', 'true');
-INSERT INTO `inbox` VALUES ('2017-05-08 17:43:04', '2017-05-07 11:40:58', '00420074006E002D006500780065002300620061006B007400690023003000380032003200320035003200330033003200330030', '+6285866402974', 'Default_No_Compression', '', '+62816124', '-1', 'Btn-exe#bakti#082225233230', '321', 'modem1', 'true');
-INSERT INTO `inbox` VALUES ('2017-05-08 17:43:04', '2017-05-07 11:42:25', '0050006C0062002D0065007800650023007600650072006F006E0069006300610023003000380035003700310035003000350033003400390037', '+6285866402974', 'Default_No_Compression', '', '+62816124', '-1', 'Plb-exe#veronica#085715053497', '322', 'modem1', 'true');
-INSERT INTO `inbox` VALUES ('2017-05-08 17:43:04', '2017-05-07 11:44:07', '004C0061006D002D007600690070002300720061006400690061006E002300300038003900380038003500350036003000310039', '+6285866402974', 'Default_No_Compression', '', '+62816124', '-1', 'Lam-vip#radian#08988556019', '323', 'modem1', 'true');
-INSERT INTO `inbox` VALUES ('2017-05-08 17:43:04', '2017-05-07 11:47:19', '004A006B0074002D007300750070002300520069006F0023002B003600320038003500360032003500320030003400330030', '+6285329755578', 'Default_No_Compression', '', '+62811078801', '-1', 'Jkt-sup#Rio#+628562520430', '324', 'modem1', 'true');
-INSERT INTO `inbox` VALUES ('2017-05-08 17:43:04', '2017-05-07 11:48:46', '00420074006E002D0076006900700023006100700072006900790061006E0074006F0023003000380035003700320035003000390039003800300033', '+6285329755578', 'Default_No_Compression', '', '+62811078801', '-1', 'Btn-vip#apriyanto#085725099803', '325', 'modem1', 'true');
-INSERT INTO `inbox` VALUES ('2017-05-08 17:43:04', '2017-05-07 11:49:58', '004A006B0074002D0065007800650023005200690066006100690023003000380032003100340031003700300035003200390030', '+6285329755578', 'Default_No_Compression', '', '+62811078801', '-1', 'Jkt-exe#Rifai#082141705290', '326', 'modem1', 'true');
-INSERT INTO `inbox` VALUES ('2017-05-16 18:43:47', '2017-05-09 16:45:26', '0073006500610074006D006100700020006B00790061006B00200067006D006E002C00200065006E007400690074006100730020006E007900200061006B0020006700200070006100680061006D', '+6282141705290', 'Default_No_Compression', '', '+62811078801', '-1', 'seatmap kyak gmn, entitas ny ak g paham', '348', 'modem1', 'false');
-INSERT INTO `inbox` VALUES ('2017-05-16 18:43:47', '2017-05-09 18:49:46', '004F0072006100200074007500730020006C00670020006C006F0072006F002000610071002C002000730073006B002000790065006E00200077006500730020006100770061006B00200071002000700065006E0061006B002C0020007200680069007300740079', '+6281224422871', 'Default_No_Compression', '', '+62811078801', '-1', 'Ora tus lg loro aq, ssk yen wes awak q penak, rhisty', '349', 'modem1', 'false');
-INSERT INTO `inbox` VALUES ('2017-05-16 18:43:47', '2017-05-09 19:51:24', '00530065006B002000730065006B002C00200069006E00690020007300690061007000610020007900610020003F00200047006B0020006B0065002000730061007600650020006400690020006B006F006E00740061006B0020006E0061006D0061006E00790061', '+6285786529943', 'Default_No_Compression', '', '+62816124', '-1', 'Sek sek, ini siapa ya ? Gk ke save di kontak namanya', '350', 'modem1', 'false');
-INSERT INTO `inbox` VALUES ('2017-05-11 14:04:48', '2017-05-08 00:29:09', '004A006B0074002D0062006900730023007300740061006E006C006500650023003000380032003100330038003400320034003700320030', '+6285715053497', 'Default_No_Compression', '', '+62816124', '-1', 'Jkt-bis#stanlee#082138424720', '339', 'modem1', 'true');
-INSERT INTO `inbox` VALUES ('2017-05-16 19:03:24', '2017-05-16 19:03:03', '004A006B0074002D0065007800650023006E006100740061006C006900610023003000380031003300320035003300330037003400380036', '+6285702413985', 'Default_No_Compression', '', '+62816124', '-1', 'Jkt-exe#natalia#081325337486', '351', 'modem1', 'true');
-INSERT INTO `inbox` VALUES ('2017-05-16 19:07:01', '2017-05-16 19:06:25', '004A006B0074002D0065007800650023006E006100740061006C006900610023003000380035003700300032003400310033003900380035', '+6285866402963', 'Default_No_Compression', '', '+62816124', '-1', 'Jkt-exe#natalia#085702413985', '352', 'modem1', 'true');
+--
+-- Dumping data untuk tabel `inbox`
+--
 
--- ----------------------------
--- Table structure for jadwal
--- ----------------------------
-DROP TABLE IF EXISTS `jadwal`;
-CREATE TABLE `jadwal` (
+INSERT INTO `inbox` (`UpdatedInDB`, `ReceivingDateTime`, `Text`, `SenderNumber`, `Coding`, `UDH`, `SMSCNumber`, `Class`, `TextDecoded`, `ID`, `RecipientID`, `Processed`) VALUES
+('2017-05-08 10:43:04', '2017-05-07 04:35:43', '004A006B0074002D007300750070002300610062006500740023003000380035003300320039003700350035003500370038', '+6285866402974', 'Default_No_Compression', '', '+62816124', -1, 'Jkt-sup#abet#085329755578', 319, 'modem1', 'true'),
+('2017-05-08 10:43:04', '2017-05-07 04:39:19', '004A006B0074002D00650078006500230061006C00760069006E0023003000380032003300310034003800350033003400390039', '+6285866402974', 'Default_No_Compression', '', '+62816124', -1, 'Jkt-exe#alvin#082314853499', 320, 'modem1', 'true'),
+('2017-05-08 10:43:04', '2017-05-07 04:40:58', '00420074006E002D006500780065002300620061006B007400690023003000380032003200320035003200330033003200330030', '+6285866402974', 'Default_No_Compression', '', '+62816124', -1, 'Btn-exe#bakti#082225233230', 321, 'modem1', 'true'),
+('2017-05-08 10:43:04', '2017-05-07 04:42:25', '0050006C0062002D0065007800650023007600650072006F006E0069006300610023003000380035003700310035003000350033003400390037', '+6285866402974', 'Default_No_Compression', '', '+62816124', -1, 'Plb-exe#veronica#085715053497', 322, 'modem1', 'true'),
+('2017-05-08 10:43:04', '2017-05-07 04:44:07', '004C0061006D002D007600690070002300720061006400690061006E002300300038003900380038003500350036003000310039', '+6285866402974', 'Default_No_Compression', '', '+62816124', -1, 'Lam-vip#radian#08988556019', 323, 'modem1', 'true'),
+('2017-05-08 10:43:04', '2017-05-07 04:47:19', '004A006B0074002D007300750070002300520069006F0023002B003600320038003500360032003500320030003400330030', '+6285329755578', 'Default_No_Compression', '', '+62811078801', -1, 'Jkt-sup#Rio#+628562520430', 324, 'modem1', 'true'),
+('2017-05-08 10:43:04', '2017-05-07 04:48:46', '00420074006E002D0076006900700023006100700072006900790061006E0074006F0023003000380035003700320035003000390039003800300033', '+6285329755578', 'Default_No_Compression', '', '+62811078801', -1, 'Btn-vip#apriyanto#085725099803', 325, 'modem1', 'true'),
+('2017-05-08 10:43:04', '2017-05-07 04:49:58', '004A006B0074002D0065007800650023005200690066006100690023003000380032003100340031003700300035003200390030', '+6285329755578', 'Default_No_Compression', '', '+62811078801', -1, 'Jkt-exe#Rifai#082141705290', 326, 'modem1', 'true'),
+('2017-05-16 11:43:47', '2017-05-09 09:45:26', '0073006500610074006D006100700020006B00790061006B00200067006D006E002C00200065006E007400690074006100730020006E007900200061006B0020006700200070006100680061006D', '+6282141705290', 'Default_No_Compression', '', '+62811078801', -1, 'seatmap kyak gmn, entitas ny ak g paham', 348, 'modem1', 'false'),
+('2017-05-16 11:43:47', '2017-05-09 11:49:46', '004F0072006100200074007500730020006C00670020006C006F0072006F002000610071002C002000730073006B002000790065006E00200077006500730020006100770061006B00200071002000700065006E0061006B002C0020007200680069007300740079', '+6281224422871', 'Default_No_Compression', '', '+62811078801', -1, 'Ora tus lg loro aq, ssk yen wes awak q penak, rhisty', 349, 'modem1', 'false'),
+('2017-05-16 11:43:47', '2017-05-09 12:51:24', '00530065006B002000730065006B002C00200069006E00690020007300690061007000610020007900610020003F00200047006B0020006B0065002000730061007600650020006400690020006B006F006E00740061006B0020006E0061006D0061006E00790061', '+6285786529943', 'Default_No_Compression', '', '+62816124', -1, 'Sek sek, ini siapa ya ? Gk ke save di kontak namanya', 350, 'modem1', 'false'),
+('2017-05-11 07:04:48', '2017-05-07 17:29:09', '004A006B0074002D0062006900730023007300740061006E006C006500650023003000380032003100330038003400320034003700320030', '+6285715053497', 'Default_No_Compression', '', '+62816124', -1, 'Jkt-bis#stanlee#082138424720', 339, 'modem1', 'true'),
+('2017-05-16 12:03:24', '2017-05-16 12:03:03', '004A006B0074002D0065007800650023006E006100740061006C006900610023003000380031003300320035003300330037003400380036', '+6285702413985', 'Default_No_Compression', '', '+62816124', -1, 'Jkt-exe#natalia#081325337486', 351, 'modem1', 'true'),
+('2017-05-16 12:07:01', '2017-05-16 12:06:25', '004A006B0074002D0065007800650023006E006100740061006C006900610023003000380035003700300032003400310033003900380035', '+6285866402963', 'Default_No_Compression', '', '+62816124', -1, 'Jkt-exe#natalia#085702413985', 352, 'modem1', 'true');
+
+--
+-- Trigger `inbox`
+--
+DROP TRIGGER IF EXISTS `inbox_timestamp`;
+DELIMITER //
+CREATE TRIGGER `inbox_timestamp` BEFORE INSERT ON `inbox`
+ FOR EACH ROW BEGIN
+    IF NEW.ReceivingDateTime = '0000-00-00 00:00:00' THEN
+        SET NEW.ReceivingDateTime = CURRENT_TIMESTAMP();
+    END IF;
+END
+//
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jadwal`
+--
+
+CREATE TABLE IF NOT EXISTS `jadwal` (
   `id_jadwal` int(11) NOT NULL AUTO_INCREMENT,
   `jam_berangkat` time DEFAULT NULL,
   `jurusan` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`id_jadwal`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
--- ----------------------------
--- Records of jadwal
--- ----------------------------
-INSERT INTO `jadwal` VALUES ('14', '16:30:00', 'JAKARTA');
-INSERT INTO `jadwal` VALUES ('15', '15:30:00', 'BANTEN');
-INSERT INTO `jadwal` VALUES ('16', '15:00:00', 'PALEMBANG');
-INSERT INTO `jadwal` VALUES ('17', '16:00:00', 'LAMPUNG');
+--
+-- Dumping data untuk tabel `jadwal`
+--
 
--- ----------------------------
--- Table structure for kelas
--- ----------------------------
-DROP TABLE IF EXISTS `kelas`;
-CREATE TABLE `kelas` (
+INSERT INTO `jadwal` (`id_jadwal`, `jam_berangkat`, `jurusan`) VALUES
+(14, '16:30:00', 'JAKARTA'),
+(15, '15:30:00', 'BANTEN'),
+(16, '15:00:00', 'PALEMBANG'),
+(17, '16:00:00', 'LAMPUNG');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kelas`
+--
+
+CREATE TABLE IF NOT EXISTS `kelas` (
   `id_kelas` int(11) NOT NULL AUTO_INCREMENT,
   `nama_kelas` varchar(20) NOT NULL,
   `jumlah_kursi` int(3) NOT NULL,
   PRIMARY KEY (`id_kelas`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
--- ----------------------------
--- Records of kelas
--- ----------------------------
-INSERT INTO `kelas` VALUES ('7', 'Executive', '32');
-INSERT INTO `kelas` VALUES ('6', 'Super Executive', '22');
-INSERT INTO `kelas` VALUES ('8', 'VIP', '40');
-INSERT INTO `kelas` VALUES ('9', 'Bisnis', '49');
+--
+-- Dumping data untuk tabel `kelas`
+--
 
--- ----------------------------
--- Table structure for operator
--- ----------------------------
-DROP TABLE IF EXISTS `operator`;
-CREATE TABLE `operator` (
+INSERT INTO `kelas` (`id_kelas`, `nama_kelas`, `jumlah_kursi`) VALUES
+(7, 'Executive', 32),
+(6, 'Super Executive', 22),
+(8, 'VIP', 40),
+(9, 'Bisnis', 49);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `operator`
+--
+
+CREATE TABLE IF NOT EXISTS `operator` (
   `operator_id` int(11) NOT NULL AUTO_INCREMENT,
   `nama_lengkap` varchar(50) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(32) NOT NULL,
   `last_login` date NOT NULL,
   PRIMARY KEY (`operator_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
--- ----------------------------
--- Records of operator
--- ----------------------------
-INSERT INTO `operator` VALUES ('9', 'Albertus', 'bethus', '255a98cfbee414ebd9b21c2efc85dfd1', '2017-05-10');
-INSERT INTO `operator` VALUES ('10', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2017-05-16');
-INSERT INTO `operator` VALUES ('11', 'Mukidi', 'mukidi', '47b55511386d44681b64c36aaa7f5fe3', '2017-05-02');
+--
+-- Dumping data untuk tabel `operator`
+--
 
--- ----------------------------
--- Table structure for outbox
--- ----------------------------
-DROP TABLE IF EXISTS `outbox`;
-CREATE TABLE `outbox` (
+INSERT INTO `operator` (`operator_id`, `nama_lengkap`, `username`, `password`, `last_login`) VALUES
+(9, 'Albertus', 'bethus', '255a98cfbee414ebd9b21c2efc85dfd1', '2017-05-19'),
+(10, 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2017-05-22'),
+(11, 'Mukidi', 'mukidi', '47b55511386d44681b64c36aaa7f5fe3', '2017-05-02');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `outbox`
+--
+
+CREATE TABLE IF NOT EXISTS `outbox` (
   `UpdatedInDB` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `InsertIntoDB` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `SendingDateTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -232,17 +281,35 @@ CREATE TABLE `outbox` (
   PRIMARY KEY (`ID`),
   KEY `outbox_date` (`SendingDateTime`,`SendingTimeOut`),
   KEY `outbox_sender` (`SenderID`)
-) ENGINE=MyISAM AUTO_INCREMENT=5608 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5608 ;
 
--- ----------------------------
--- Records of outbox
--- ----------------------------
+--
+-- Trigger `outbox`
+--
+DROP TRIGGER IF EXISTS `outbox_timestamp`;
+DELIMITER //
+CREATE TRIGGER `outbox_timestamp` BEFORE INSERT ON `outbox`
+ FOR EACH ROW BEGIN
+    IF NEW.InsertIntoDB = '0000-00-00 00:00:00' THEN
+        SET NEW.InsertIntoDB = CURRENT_TIMESTAMP();
+    END IF;
+    IF NEW.SendingDateTime = '0000-00-00 00:00:00' THEN
+        SET NEW.SendingDateTime = CURRENT_TIMESTAMP();
+    END IF;
+    IF NEW.SendingTimeOut = '0000-00-00 00:00:00' THEN
+        SET NEW.SendingTimeOut = CURRENT_TIMESTAMP();
+    END IF;
+END
+//
+DELIMITER ;
 
--- ----------------------------
--- Table structure for outbox_multipart
--- ----------------------------
-DROP TABLE IF EXISTS `outbox_multipart`;
-CREATE TABLE `outbox_multipart` (
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `outbox_multipart`
+--
+
+CREATE TABLE IF NOT EXISTS `outbox_multipart` (
   `Text` text,
   `Coding` enum('Default_No_Compression','Unicode_No_Compression','8bit','Default_Compression','Unicode_Compression') NOT NULL DEFAULT 'Default_No_Compression',
   `UDH` text,
@@ -253,50 +320,56 @@ CREATE TABLE `outbox_multipart` (
   PRIMARY KEY (`ID`,`SequencePosition`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of outbox_multipart
--- ----------------------------
-INSERT INTO `outbox_multipart` VALUES (null, 'Default_No_Compression', '050003240202', '-1', ' +6285866402963', '0', '2');
+--
+-- Dumping data untuk tabel `outbox_multipart`
+--
 
--- ----------------------------
--- Table structure for pbk
--- ----------------------------
-DROP TABLE IF EXISTS `pbk`;
-CREATE TABLE `pbk` (
+INSERT INTO `outbox_multipart` (`Text`, `Coding`, `UDH`, `Class`, `TextDecoded`, `ID`, `SequencePosition`) VALUES
+(NULL, 'Default_No_Compression', '050003240202', -1, ' +6285866402963', 0, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pbk`
+--
+
+CREATE TABLE IF NOT EXISTS `pbk` (
   `GroupID` int(11) NOT NULL DEFAULT '-1',
   `Name` text NOT NULL,
   `Number` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of pbk
--- ----------------------------
-INSERT INTO `pbk` VALUES ('1230', 'RADIAN', '+628988556019');
-INSERT INTO `pbk` VALUES ('564', 'BETUS', '+6282136387230');
-INSERT INTO `pbk` VALUES ('0', '085786529943', '+6282136387230');
-INSERT INTO `pbk` VALUES ('1230', 'RADIAN', '+628988556019');
-INSERT INTO `pbk` VALUES ('564', 'BETUS', '+6282136387230');
-INSERT INTO `pbk` VALUES ('0', '085786529943', '+6282136387230');
+--
+-- Dumping data untuk tabel `pbk`
+--
 
--- ----------------------------
--- Table structure for pbk_groups
--- ----------------------------
-DROP TABLE IF EXISTS `pbk_groups`;
-CREATE TABLE `pbk_groups` (
+INSERT INTO `pbk` (`GroupID`, `Name`, `Number`) VALUES
+(1230, 'RADIAN', '+628988556019'),
+(564, 'BETUS', '+6282136387230'),
+(0, '085786529943', '+6282136387230'),
+(1230, 'RADIAN', '+628988556019'),
+(564, 'BETUS', '+6282136387230'),
+(0, '085786529943', '+6282136387230');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pbk_groups`
+--
+
+CREATE TABLE IF NOT EXISTS `pbk_groups` (
   `Name` text NOT NULL,
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- ----------------------------
--- Records of pbk_groups
--- ----------------------------
+-- --------------------------------------------------------
 
--- ----------------------------
--- Table structure for phones
--- ----------------------------
-DROP TABLE IF EXISTS `phones`;
-CREATE TABLE `phones` (
+--
+-- Struktur dari tabel `phones`
+--
+
+CREATE TABLE IF NOT EXISTS `phones` (
   `ID` text NOT NULL,
   `UpdatedInDB` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `InsertIntoDB` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -312,16 +385,37 @@ CREATE TABLE `phones` (
   PRIMARY KEY (`IMEI`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of phones
--- ----------------------------
-INSERT INTO `phones` VALUES ('modem1', '2017-05-16 22:46:31', '2017-05-16 18:43:46', '2017-05-16 22:46:41', 'yes', 'yes', '865633012379576', 'Gammu 1.25.0, Windows Server 2007 SP1, GCC 4.3, MinGW 3.15', '0', '51', '142', '5');
+--
+-- Dumping data untuk tabel `phones`
+--
 
--- ----------------------------
--- Table structure for sentitems
--- ----------------------------
-DROP TABLE IF EXISTS `sentitems`;
-CREATE TABLE `sentitems` (
+INSERT INTO `phones` (`ID`, `UpdatedInDB`, `InsertIntoDB`, `TimeOut`, `Send`, `Receive`, `IMEI`, `Client`, `Battery`, `Signal`, `Sent`, `Received`) VALUES
+('modem1', '2017-05-22 12:11:41', '2017-05-22 11:00:52', '2017-05-22 12:11:51', 'yes', 'yes', '865633012379576', 'Gammu 1.25.0, Windows Server 2007 SP1, GCC 4.3, MinGW 3.15', 0, 66, 0, 0);
+
+--
+-- Trigger `phones`
+--
+DROP TRIGGER IF EXISTS `phones_timestamp`;
+DELIMITER //
+CREATE TRIGGER `phones_timestamp` BEFORE INSERT ON `phones`
+ FOR EACH ROW BEGIN
+    IF NEW.InsertIntoDB = '0000-00-00 00:00:00' THEN
+        SET NEW.InsertIntoDB = CURRENT_TIMESTAMP();
+    END IF;
+    IF NEW.TimeOut = '0000-00-00 00:00:00' THEN
+        SET NEW.TimeOut = CURRENT_TIMESTAMP();
+    END IF;
+END
+//
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `sentitems`
+--
+
+CREATE TABLE IF NOT EXISTS `sentitems` (
   `UpdatedInDB` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `InsertIntoDB` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `SendingDateTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -348,17 +442,38 @@ CREATE TABLE `sentitems` (
   KEY `sentitems_sender` (`SenderID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of sentitems
--- ----------------------------
-INSERT INTO `sentitems` VALUES ('2017-05-16 19:07:34', '2017-05-16 19:07:01', '2017-05-16 19:07:34', null, '00500065006D006500730061006E0061006E002000540069006B00650074002C0020004E006F006D006F0072003A0020003000300031002C002000610074006100730020006E0061006D00610020004E004100540041004C00490041002C0020002000640065006E00670061006E0020004A00750072007500730061006E0020004A0041004B004100520054004100200042006500720068006100730069006C', '+6285866402963', 'Default_No_Compression', '', '+62816124', '-1', 'Pemesanan Tiket, Nomor: 001, atas nama NATALIA,  dengan Jurusan JAKARTA Berhasil', '5306', 'modem1', '1', 'SendingOKNoReport', '-1', '149', '255', 'Gammu');
-INSERT INTO `sentitems` VALUES ('2017-05-16 19:07:37', '2017-05-16 19:07:01', '2017-05-16 19:07:37', null, '0054006500720069006D00610020004B00610073006900680020004E004100540041004C00490041002C0020004E006F006D006F0072002000540069006B0065007400200041006E00640061003A005B003000300031005D002C0020004100670065006E0020006B00650062006500720061006E0067006B006100740061006E003A004B0061006E0074006F0072002000500075007300610074002C0020004A00750072007500730061006E0020004A0041004B0041005200540041002C00200075006E00740075006B00200069006E0066006F002000700065006D006500730061006E0061006E00200068007500620075006E00670069003A0020002B0036003200380035003800360036003400300032003900360033', '085702413985', 'Default_No_Compression', '', '+62816124', '-1', 'Terima Kasih NATALIA, Nomor Tiket Anda:[001], Agen keberangkatan:Kantor Pusat, Jurusan JAKARTA, untuk info pemesanan hubungi: +6285866402963', '5307', 'modem1', '1', 'SendingOKNoReport', '-1', '150', '255', 'Gammu');
+--
+-- Dumping data untuk tabel `sentitems`
+--
 
--- ----------------------------
--- Table structure for tiket
--- ----------------------------
-DROP TABLE IF EXISTS `tiket`;
-CREATE TABLE `tiket` (
+INSERT INTO `sentitems` (`UpdatedInDB`, `InsertIntoDB`, `SendingDateTime`, `DeliveryDateTime`, `Text`, `DestinationNumber`, `Coding`, `UDH`, `SMSCNumber`, `Class`, `TextDecoded`, `ID`, `SenderID`, `SequencePosition`, `Status`, `StatusError`, `TPMR`, `RelativeValidity`, `CreatorID`) VALUES
+('2017-05-16 12:07:34', '2017-05-16 12:07:01', '2017-05-16 12:07:34', NULL, '00500065006D006500730061006E0061006E002000540069006B00650074002C0020004E006F006D006F0072003A0020003000300031002C002000610074006100730020006E0061006D00610020004E004100540041004C00490041002C0020002000640065006E00670061006E0020004A00750072007500730061006E0020004A0041004B004100520054004100200042006500720068006100730069006C', '+6285866402963', 'Default_No_Compression', '', '+62816124', -1, 'Pemesanan Tiket, Nomor: 001, atas nama NATALIA,  dengan Jurusan JAKARTA Berhasil', 5306, 'modem1', 1, 'SendingOKNoReport', -1, 149, 255, 'Gammu'),
+('2017-05-16 12:07:37', '2017-05-16 12:07:01', '2017-05-16 12:07:37', NULL, '0054006500720069006D00610020004B00610073006900680020004E004100540041004C00490041002C0020004E006F006D006F0072002000540069006B0065007400200041006E00640061003A005B003000300031005D002C0020004100670065006E0020006B00650062006500720061006E0067006B006100740061006E003A004B0061006E0074006F0072002000500075007300610074002C0020004A00750072007500730061006E0020004A0041004B0041005200540041002C00200075006E00740075006B00200069006E0066006F002000700065006D006500730061006E0061006E00200068007500620075006E00670069003A0020002B0036003200380035003800360036003400300032003900360033', '085702413985', 'Default_No_Compression', '', '+62816124', -1, 'Terima Kasih NATALIA, Nomor Tiket Anda:[001], Agen keberangkatan:Kantor Pusat, Jurusan JAKARTA, untuk info pemesanan hubungi: +6285866402963', 5307, 'modem1', 1, 'SendingOKNoReport', -1, 150, 255, 'Gammu');
+
+--
+-- Trigger `sentitems`
+--
+DROP TRIGGER IF EXISTS `sentitems_timestamp`;
+DELIMITER //
+CREATE TRIGGER `sentitems_timestamp` BEFORE INSERT ON `sentitems`
+ FOR EACH ROW BEGIN
+    IF NEW.InsertIntoDB = '0000-00-00 00:00:00' THEN
+        SET NEW.InsertIntoDB = CURRENT_TIMESTAMP();
+    END IF;
+    IF NEW.SendingDateTime = '0000-00-00 00:00:00' THEN
+        SET NEW.SendingDateTime = CURRENT_TIMESTAMP();
+    END IF;
+END
+//
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tiket`
+--
+
+CREATE TABLE IF NOT EXISTS `tiket` (
   `id_tiket` int(11) NOT NULL AUTO_INCREMENT,
   `kode_tiket` varchar(30) NOT NULL,
   `id_kelas` int(11) NOT NULL,
@@ -366,26 +481,30 @@ CREATE TABLE `tiket` (
   `harga` int(12) NOT NULL,
   `jenis_tiket` enum('0','1') NOT NULL,
   PRIMARY KEY (`id_tiket`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
--- ----------------------------
--- Records of tiket
--- ----------------------------
-INSERT INTO `tiket` VALUES ('22', 'JKT-SUP', '6', '14', '265000', '1');
-INSERT INTO `tiket` VALUES ('23', 'JKT-EXE', '7', '14', '180000', '1');
-INSERT INTO `tiket` VALUES ('24', 'JKT-VIP', '8', '14', '160000', '1');
-INSERT INTO `tiket` VALUES ('25', 'JKT-BIS', '9', '14', '115000', '0');
-INSERT INTO `tiket` VALUES ('26', 'LAM-VIP', '8', '17', '385000', '1');
-INSERT INTO `tiket` VALUES ('27', 'BTN-EXE', '7', '15', '200000', '1');
-INSERT INTO `tiket` VALUES ('28', 'BTN-VIP', '8', '15', '175000', '1');
-INSERT INTO `tiket` VALUES ('29', 'PLB-EXE', '7', '16', '470000', '1');
-INSERT INTO `tiket` VALUES ('30', 'PLB-VIP', '8', '16', '415000', '1');
+--
+-- Dumping data untuk tabel `tiket`
+--
 
--- ----------------------------
--- Table structure for transaksi
--- ----------------------------
-DROP TABLE IF EXISTS `transaksi`;
-CREATE TABLE `transaksi` (
+INSERT INTO `tiket` (`id_tiket`, `kode_tiket`, `id_kelas`, `id_jadwal`, `harga`, `jenis_tiket`) VALUES
+(22, 'JKT-SUP', 6, 14, 265000, '1'),
+(23, 'JKT-EXE', 7, 14, 180000, '1'),
+(24, 'JKT-VIP', 8, 14, 160000, '1'),
+(25, 'JKT-BIS', 9, 14, 115000, '0'),
+(26, 'LAM-VIP', 8, 17, 385000, '1'),
+(27, 'BTN-EXE', 7, 15, 200000, '1'),
+(28, 'BTN-VIP', 8, 15, 175000, '1'),
+(29, 'PLB-EXE', 7, 16, 470000, '1'),
+(30, 'PLB-VIP', 8, 16, 415000, '1');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `transaksi`
+--
+
+CREATE TABLE IF NOT EXISTS `transaksi` (
   `transaksi_id` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelas` int(11) NOT NULL,
   `kode_tiket` varchar(10) NOT NULL,
@@ -399,66 +518,24 @@ CREATE TABLE `transaksi` (
   `status` enum('BATAL','AKTIF') NOT NULL DEFAULT 'AKTIF',
   `harga` int(11) NOT NULL,
   PRIMARY KEY (`transaksi_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1332 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1332 ;
 
--- ----------------------------
--- Records of transaksi
--- ----------------------------
-INSERT INTO `transaksi` VALUES ('1322', '6', 'JKT-SUP', '091', 'ABET', '+6285329755578', '14', '12', '2017-05-08', '05:43:04', 'AKTIF', '265000');
-INSERT INTO `transaksi` VALUES ('1323', '7', 'JKT-EXE', '092', 'ALVIN', '+6282314853499', '14', '12', '2017-05-08', '05:43:04', 'AKTIF', '180000');
-INSERT INTO `transaksi` VALUES ('1324', '7', 'BTN-EXE', '093', 'BAKTI', '+6282225233230', '15', '12', '2017-05-08', '05:43:04', 'AKTIF', '200000');
-INSERT INTO `transaksi` VALUES ('1325', '7', 'PLB-EXE', '094', 'VERONICA', '+6285715053497', '16', '12', '2017-05-08', '05:43:04', 'AKTIF', '470000');
-INSERT INTO `transaksi` VALUES ('1326', '8', 'LAM-VIP', '095', 'RADIAN', '+628988556019', '17', '12', '2017-05-08', '05:43:04', 'AKTIF', '385000');
-INSERT INTO `transaksi` VALUES ('1327', '6', 'JKT-SUP', '061', 'RIO', '+628562520430', '14', '11', '2017-05-08', '05:43:04', 'AKTIF', '265000');
-INSERT INTO `transaksi` VALUES ('1328', '8', 'BTN-VIP', '062', 'APRIYANTO', '+6285725099803', '15', '11', '2017-05-08', '05:43:04', 'AKTIF', '175000');
-INSERT INTO `transaksi` VALUES ('1329', '7', 'JKT-EXE', '063', 'RIFAI', '+6282141705290', '14', '11', '2017-05-08', '05:43:04', 'AKTIF', '180000');
-INSERT INTO `transaksi` VALUES ('1330', '9', 'JKT-BIS', '031', 'STANLEE', '+6282138424720', '14', '10', '2017-05-11', '02:04:48', 'AKTIF', '115000');
-INSERT INTO `transaksi` VALUES ('1331', '7', 'JKT-EXE', '001', 'NATALIA', '+6285702413985', '14', '13', '2017-05-16', '07:07:01', 'AKTIF', '180000');
-DROP TRIGGER IF EXISTS `inbox_timestamp`;
-DELIMITER ;;
-CREATE TRIGGER `inbox_timestamp` BEFORE INSERT ON `inbox` FOR EACH ROW BEGIN
-    IF NEW.ReceivingDateTime = '0000-00-00 00:00:00' THEN
-        SET NEW.ReceivingDateTime = CURRENT_TIMESTAMP();
-    END IF;
-END
-;;
-DELIMITER ;
-DROP TRIGGER IF EXISTS `outbox_timestamp`;
-DELIMITER ;;
-CREATE TRIGGER `outbox_timestamp` BEFORE INSERT ON `outbox` FOR EACH ROW BEGIN
-    IF NEW.InsertIntoDB = '0000-00-00 00:00:00' THEN
-        SET NEW.InsertIntoDB = CURRENT_TIMESTAMP();
-    END IF;
-    IF NEW.SendingDateTime = '0000-00-00 00:00:00' THEN
-        SET NEW.SendingDateTime = CURRENT_TIMESTAMP();
-    END IF;
-    IF NEW.SendingTimeOut = '0000-00-00 00:00:00' THEN
-        SET NEW.SendingTimeOut = CURRENT_TIMESTAMP();
-    END IF;
-END
-;;
-DELIMITER ;
-DROP TRIGGER IF EXISTS `phones_timestamp`;
-DELIMITER ;;
-CREATE TRIGGER `phones_timestamp` BEFORE INSERT ON `phones` FOR EACH ROW BEGIN
-    IF NEW.InsertIntoDB = '0000-00-00 00:00:00' THEN
-        SET NEW.InsertIntoDB = CURRENT_TIMESTAMP();
-    END IF;
-    IF NEW.TimeOut = '0000-00-00 00:00:00' THEN
-        SET NEW.TimeOut = CURRENT_TIMESTAMP();
-    END IF;
-END
-;;
-DELIMITER ;
-DROP TRIGGER IF EXISTS `sentitems_timestamp`;
-DELIMITER ;;
-CREATE TRIGGER `sentitems_timestamp` BEFORE INSERT ON `sentitems` FOR EACH ROW BEGIN
-    IF NEW.InsertIntoDB = '0000-00-00 00:00:00' THEN
-        SET NEW.InsertIntoDB = CURRENT_TIMESTAMP();
-    END IF;
-    IF NEW.SendingDateTime = '0000-00-00 00:00:00' THEN
-        SET NEW.SendingDateTime = CURRENT_TIMESTAMP();
-    END IF;
-END
-;;
-DELIMITER ;
+--
+-- Dumping data untuk tabel `transaksi`
+--
+
+INSERT INTO `transaksi` (`transaksi_id`, `id_kelas`, `kode_tiket`, `no_tiket`, `nama_pelanggan`, `nohp_pelanggan`, `id_jadwal`, `id_agen`, `tgl_transaksi`, `jam_transaksi`, `status`, `harga`) VALUES
+(1322, 6, 'JKT-SUP', '091', 'ABET', '+6285329755578', 14, 12, '2017-05-08', '05:43:04', 'AKTIF', 265000),
+(1323, 7, 'JKT-EXE', '092', 'ALVIN', '+6282314853499', 14, 12, '2017-05-08', '05:43:04', 'AKTIF', 180000),
+(1324, 7, 'BTN-EXE', '093', 'BAKTI', '+6282225233230', 15, 12, '2017-05-08', '05:43:04', 'AKTIF', 200000),
+(1325, 7, 'PLB-EXE', '094', 'VERONICA', '+6285715053497', 16, 12, '2017-05-08', '05:43:04', 'AKTIF', 470000),
+(1326, 8, 'LAM-VIP', '095', 'RADIAN', '+628988556019', 17, 12, '2017-05-08', '05:43:04', 'AKTIF', 385000),
+(1327, 6, 'JKT-SUP', '061', 'RIO', '+628562520430', 14, 11, '2017-05-08', '05:43:04', 'AKTIF', 265000),
+(1328, 8, 'BTN-VIP', '062', 'APRIYANTO', '+6285725099803', 15, 11, '2017-05-08', '05:43:04', 'AKTIF', 175000),
+(1329, 7, 'JKT-EXE', '063', 'RIFAI', '+6282141705290', 14, 11, '2017-05-08', '05:43:04', 'AKTIF', 180000),
+(1330, 9, 'JKT-BIS', '031', 'STANLEE', '+6282138424720', 14, 10, '2017-05-11', '02:04:48', 'AKTIF', 115000),
+(1331, 7, 'JKT-EXE', '001', 'NATALIA', '+6285702413985', 14, 13, '2017-05-16', '07:07:01', 'AKTIF', 180000);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
